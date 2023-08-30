@@ -25,7 +25,7 @@ public class QouteRandomizer {
         if (quotes != null) {
             for (Qoute quote: quotes
                  ) {
-                if (quote.author.equalsIgnoreCase(author)){
+                if (quote.getAuthor().equalsIgnoreCase(author)){
                     authorQuotes.add(quote);
                 }
             }

@@ -3,8 +3,15 @@
  */
 package quotes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
     @Test
     public void givenTestQuotes_ShouldReturnARandom() {
-        Qoute quote1 = new Qoute("Mohammad", "Student in ASAC");
-        Qoute quote2 = new Qoute("ASAC", "Java Programming Course");
+        Qoute quote1 = new Qoute("Mohammad", "Student in ASAC", "115");
+        Qoute quote2 = new Qoute("ASAC", "Java Programming Course", "45");
         Qoute[] quotes = {quote1, quote2};
         QouteRandomizer randomizer = new QouteRandomizer(quotes);
 
@@ -25,9 +32,9 @@ class AppTest {
 
     @Test
     public void givenAuthorName_AndTheUserIsSearchingByAuthor_ShouldReturnTheQuotesBasedOnTheAuthor() {
-        Qoute quote1 = new Qoute("Mohammad", "Student in ASAC");
-        Qoute quote2 = new Qoute("ASAC", "Java Programming Course");
-        Qoute quote3 = new Qoute("Mohammad", "Student in ASAC");
+        Qoute quote1 = new Qoute("Mohammad", "Student in ASAC", "115");
+        Qoute quote2 = new Qoute("ASAC", "Java Programming Course", "45");
+        Qoute quote3 = new Qoute("Mohammad", "Student in ASAC", "115");
         Qoute[] quotes = {quote1, quote2, quote3};
         QouteRandomizer randomizer = new QouteRandomizer(quotes);
 
@@ -56,4 +63,46 @@ class AppTest {
 
         assertNull(authorQuotes);
     }
+
+    @Test
+    public void testConnectSuccessful() {
+        try {
+            URL apiUrl = new URL("https://api.quotable.io/random");
+            File filePath = new File("app/src/test/resources/test_quotes.json");
+
+            Api api = new Api(apiUrl, filePath);
+            boolean connected = api.connect();
+            assertTrue(connected, "API should connect successfully");
+        } catch (MalformedURLException e) {
+            fail("Malformed URL: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testConnectFailed() {
+        try {
+            URL apiUrl = new URL("https://invalid-u.com");
+            File filePath = new File("src/test/resources/qoutes.json");
+
+            Api api = new Api(apiUrl, filePath);
+            boolean connected = api.connect();
+            assertFalse(connected, "API should fail to connect");
+        } catch (MalformedURLException e) {
+            fail("Malformed URL: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void whenWritingToFile_arrayOfJsonFileShouldBeUpdated() throws IOException {
+        URL apiUrl = new URL("https://api.quotable.io/random");
+        File filePath = new File("src/test/resources/qoutes.json");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Api api = new Api(apiUrl, filePath);
+        Qoute[] quotes = gson.fromJson(new FileReader(filePath), Qoute[].class);
+        api.connect();
+        api.readAndWriteFile();
+        Qoute[] updatedQoutes = gson.fromJson(new FileReader(filePath),Qoute[].class);
+        assertTrue(quotes.length < updatedQoutes.length);
+    }
+
 }

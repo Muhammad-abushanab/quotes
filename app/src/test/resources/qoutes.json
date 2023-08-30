@@ -1384,34 +1384,31 @@
     ]
   },
   {
-    "author": "Tony Robbins",
-    "content": "The path to success is to take massive, determined action.",
-    "tags": [
-      "Success",
-      "Famous Quotes"
-    ]
-  },
-  {
-    "author": "Lou Holtz",
-    "content": "Ability is what you\u0027re capable of doing. Motivation determines what you do. Attitude determines how well you do it.",
-    "tags": [
-      "Famous Quotes",
-      "Inspirational"
-    ]
-  },
-  {
-    "author": "John Dewey",
-    "content": "Conflict is the gadfly of thought. It stirs us to observation and memory. It instigates to invention. It shocks us out of sheeplike passivity, and sets us at noting and contriving.",
+    "author": "Antoine de Saint-Exupéry",
+    "content": "Love does not consist of gazing at each other, but in looking together in the same direction.",
     "tags": [
       "Famous Quotes"
     ]
   },
   {
-    "author": "Albert Einstein",
-    "content": "Logic will get you from A to B. Imagination will take you everywhere.",
+    "author": "Daisaku Ikeda",
+    "content": "If we look at the world with a love of life, the world will reveal its beauty to us.",
     "tags": [
-      "Famous Quotes",
-      "Science"
+      "Famous Quotes"
+    ]
+  },
+  {
+    "author": "Lord Byron",
+    "content": "Sorrow is knowledge, those that know the most must mourn the deepest, the tree of knowledge is not the tree of life.",
+    "tags": [
+      "Wisdom"
+    ]
+  },
+  {
+    "author": "Bertrand Russell",
+    "content": "To conquer fear is the beginning of wisdom.",
+    "tags": [
+      "Wisdom"
     ]
   }
 ]
