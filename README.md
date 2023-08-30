@@ -1,7 +1,6 @@
-# quotes
+# Quotes Application
 
-The program reads a collection of quotes from a JSON file, allowing users to retrieve random quotes or search for quotes by a specific author.
-
+This Java application fetches a random quote from an external API (quotable.io) and provides functionality to work with quotes. If the API connection fails, it falls back to using locally stored quotes. The application also allows searching for quotes by author.
 ## Features
 
 **Random Quote:** If no author name is provided as an argument when running the program, the application will display a randomly selected quote along with its author's name.

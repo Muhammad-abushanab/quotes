@@ -1,12 +1,20 @@
 package quotes;
 
 public class Qoute {
-    public String author;
-    public String text;
+    private final String author;
+    private final String text;
+    private String content;
+    private String[] tags;
+    private final String likes;
 
-    public Qoute(String author, String text) {
+    public Qoute(String author, String text,String likes) {
         this.author = author;
         this.text = text;
+        this.likes =likes;
+    }
+
+    public String getLikes() {
+        return likes;
     }
 
     public String getAuthor() {
@@ -19,9 +27,10 @@ public class Qoute {
 
     @Override
     public String toString() {
-        return "" +
+        return "Qoute{" +
                 "author='" + author + '\'' +
-                ", text='" + text + '\'' + "\n"
-                ;
+                ", text='" + text + '\'' +
+                ", likes='" + likes + '\'' +
+                '}';
     }
 }
